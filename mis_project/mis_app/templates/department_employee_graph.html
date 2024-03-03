@@ -1,0 +1,49 @@
+<!-- mis_app/templates/department_employee_graph.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Employee Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="departmentEmployeeChart" width="400" height="200"></canvas>
+
+    <script>
+        var ctx = document.getElementById('departmentEmployeeChart').getContext('2d');
+        var departmentLabels = [];
+        var employeeCounts = [];
+
+        // Extract data from the context
+        var departmentEmployeeCounts = JSON.parse('{{ department_employee_counts|escapejs }}');
+
+        // Populate arrays with data
+        departmentEmployeeCounts.forEach(function(item) {
+            departmentLabels.push(item[0]);
+            employeeCounts.push(item[1]);
+        });
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: departmentLabels,
+                datasets: [{
+                    label: 'Employees per Department',
+                    data: employeeCounts,
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

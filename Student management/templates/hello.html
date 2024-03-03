@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Management System</h1>
+    
+    <!-- Form to add a new student -->
+    <form id="addStudentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country"><br>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city"><br>
+        <label for="company">Company:</label>
+        <input type="text" id="company" name="company"><br>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <hr>
+
+    <!-- Display students -->
+    <h2>Students:</h2>
+    <ul id="studentList">
+        <!-- Students will be displayed here -->
+    </ul>
+
+    <script>
+        // Function to fetch and display students
+        function fetchStudents() {
+            fetch('/api/students/')
+            .then(response => response.json())
+            .then(data => {
+                const studentList = document.getElementById('studentList');
+                studentList.innerHTML = '';
+                data.forEach(student => {
+                    const li = document.createElement('li');
+                    li.textContent = `${student.name}, Age: ${student.age}, Country: ${student.country}, City: ${student.city}, Company: ${student.company}`;
+                    studentList.appendChild(li);
+                });
+            });
+        }
+
+        // Function to handle form submission and add new student
+        function addStudent(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            fetch('/api/students/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    form.reset();
+                    fetchStudents(); // Refresh student list after adding new student
+                }
+            });
+        }
+
+        // Add event listener to form submission
+        document.getElementById('addStudentForm').addEventListener('submit', addStudent);
+
+        // Fetch and display students when the page loads
+        fetchStudents();
+    </script>
+</body>
+</html>
