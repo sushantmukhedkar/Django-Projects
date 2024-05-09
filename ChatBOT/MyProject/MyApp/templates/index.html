@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Website</title>
+    <script src="{% static 'script.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-sdLT0bqgMe4Ka9Rl94g4X5KV6Wz2Dp6BjS2sDQyl6Xn6c/XTwvbdeIfQ1wXsC7vmM0lrJtmYYxE1LdguoFg68w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Welcome to Our Chatbot</h1>
+            <p>Get ready for an amazing experience!</p>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <section class="features">
+                <div class="feature">
+                    <i class="fas fa-comments"></i>
+                    <h2>Real-time Chat</h2>
+                    <p>Engage in interactive conversations with our chatbot in real-time.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h2>Responsive Design</h2>
+                    <p>Enjoy seamless browsing experience on any device, be it desktop or mobile.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-star"></i>
+                    <h2>Personalized Assistance</h2>
+                    <p>Receive personalized recommendations and assistance tailored to your needs.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chatbot Company. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<style>
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* Main Content Styles */
+.main {
+    padding: 50px 0;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.feature {
+    text-align: center;
+}
+
+.feature i {
+    font-size: 48px;
+    color: #007bff;
+}
+
+.feature h2 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.feature p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+</style>
